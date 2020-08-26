@@ -1,0 +1,10 @@
+/**
+ * Sample modules are sorted by visibility and then name.
+ */
+include ":app"
+
+include ":feature-venue-search"
+include ":feature-venue-detail"
+
+include ":shared-data"
+include ":shared-resources"
