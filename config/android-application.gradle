@@ -2,8 +2,24 @@ apply from: "../config/version-update.gradle"
 
 android {
 
-    buildToolsVersion "29.0.2"
-    compileSdkVersion 29
+    buildToolsVersion versions.android.buildTools
+    compileSdkVersion versions.android.compileSdk
+
+    buildTypes {
+
+        debug {
+            debuggable true
+            testCoverageEnabled false
+        }
+
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+            proguardFiles 'proguard-android.pro'
+        }
+    }
 
     compileOptions {
         encoding "UTF-8"
@@ -16,7 +32,7 @@ android {
         targetSdkVersion versions.android.targetSdk
         minSdkVersion versions.android.minSdk
         versionCode getVersionCodeTimestamp()
-        versionName "2.5.0"
+        versionName "3.0.0"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

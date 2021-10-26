@@ -1,32 +1,39 @@
-apply from: 'config/detekt.gradle'
-
-allprojects {
-
-    repositories {
-        jcenter()
-        google()
-        maven { url "https://jitpack.io" }
-        mavenCentral()
-    }
-
-}
+apply from: "config/detekt.gradle"
 
 buildscript {
 
     apply from: 'config/dependencies.gradle'
 
     repositories {
-        jcenter()
+        mavenLocal()
         google()
-        maven { url "https://jitpack.io" }
         mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven { url "https://maven.google.com" }
+        jcenter()
     }
 
     dependencies {
         classpath gradlePlugins.detekt
         classpath gradlePlugins.gradle
         classpath gradlePlugins.gradleVersions
-        classpath gradlePlugins.googlePlayServices
         classpath gradlePlugins.kotlin
+    }
+}
+
+allprojects {
+
+    repositories {
+        mavenLocal()
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://clojars.org/repo/" }
+        maven { url "https://maven.google.com" }
+        jcenter()
     }
 }

@@ -1,4 +1,5 @@
 apply from: '../config/android-library.gradle'
+apply plugin: "kotlin-kapt"
 
 android {
 
@@ -6,7 +7,6 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-                includeCompileClasspath true
             }
             kapt {
                 arguments {
@@ -16,26 +16,19 @@ android {
         }
     }
 
-    kapt {
-        useBuildCache = false
-    }
 }
 
 dependencies {
 
-    kapt libraries.roomCompile
-
-    implementation project(':core-koin')
-
     implementation libraries.gson
-    implementation libraries.jetbrainsAnnotations
-    implementation libraries.koinAndroid
-//    implementation libraries.koinJava
     implementation libraries.okhttp3LogginInterceptor
     implementation libraries.retrofitRxAdapter
-    implementation(libraries.retrofitGsonAdapter) { exclude group: 'com.google.code.gson' }
     implementation libraries.roomRuntime
-    implementation libraries.rxJava
+    implementation libraries.terminator.koin
+    implementation(libraries.retrofitGsonAdapter) { exclude group: 'com.google.code.gson' }
+
+    kapt libraries.roomCompile
 
     testImplementation libraries.junit
+
 }
