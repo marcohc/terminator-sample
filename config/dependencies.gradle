@@ -7,6 +7,7 @@ ext.versions = [
         ],
         detekt    : "1.1.1",
         espresso  : "3.2.0",
+        glide     : "4.9.0",
         koin      : "2.1.6",
         kotlin    : "1.5.31",
         retrofit  : "2.6.2",
@@ -23,17 +24,28 @@ ext.gradlePlugins = [
 ]
 
 ext.libraries = [
-        jetbrainsAnnotations    : "org.jetbrains:annotations:19.0.0",
-        junit                   : "junit:junit:4.13",
-        glide                   : "com.github.bumptech.glide:glide:4.6.1",
+        glide              : "com.github.bumptech.glide:glide:$versions.glide",
+        glideCompiler      : "com.github.bumptech.glide:compiler:$versions.glide",
         gson                    : "com.google.code.gson:gson:2.8.5",
+        junit                   : "junit:junit:4.13",
         kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin",
+        material                : "com.google.android.material:material:1.1.0",
         okhttp3LogginInterceptor: "com.squareup.okhttp3:logging-interceptor:4.2.1",
         retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
         retrofitGsonAdapter     : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
         retrofitRxAdapter       : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
-        roomCompile             : "androidx.room:room-compiler:$versions.room",
-        roomRuntime             : "androidx.room:room-runtime:$versions.room",
+        room                    : [
+                compile  : "androidx.room:room-compiler:$versions.room",
+                migration: "androidx.room:room-migration:$versions.room",
+                runtime  : "androidx.room:room-runtime:$versions.room",
+                rxJava2  : "androidx.room:room-rxjava2:$versions.room",
+                testing  : "androidx.room:room-testing:$versions.room",
+        ],
+        rxJava                  : [
+                android: "io.reactivex.rxjava2:rxandroid:2.1.1",
+                core   : "io.reactivex.rxjava2:rxjava:2.2.17",
+        ],
+        swipeRefreshLayout      : "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0",
         terminator              : [
                 koin    : "com.github.marcohc.terminator:core-koin:$versions.terminator",
                 mvi     : "com.github.marcohc.terminator:core-mvi:$versions.terminator",

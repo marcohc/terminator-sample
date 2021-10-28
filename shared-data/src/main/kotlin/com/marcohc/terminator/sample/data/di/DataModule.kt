@@ -2,12 +2,11 @@ package com.marcohc.terminator.sample.data.di
 
 import com.google.gson.GsonBuilder
 import com.marcohc.terminator.core.koin.CoreModule
-import com.marcohc.terminator.sample.data.api.VenueApi
+import com.marcohc.terminator.sample.data.api.UserApi
 import com.marcohc.terminator.sample.data.db.AppDatabase
 import com.marcohc.terminator.sample.data.db.RoomDatabaseImpl
 import com.marcohc.terminator.sample.data.repositories.ConnectionManager
-import com.marcohc.terminator.sample.data.repositories.VenueRepository
-import com.marcohc.terminator.sample.data.repositories.VenueRepositoryImpl
+import com.marcohc.terminator.sample.data.repositories.UserRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
@@ -21,12 +20,12 @@ object DataModule : CoreModule {
 
     override val module = module {
         single { provideRetrofit() }
-        single { get<Retrofit>().create(VenueApi::class.java) }
+        single { get<Retrofit>().create(UserApi::class.java) }
         single { AppDatabase.getAppDatabase(get()) }
         single { get<RoomDatabaseImpl>().venueDao() }
         single { ConnectionManager(androidApplication(), get()) }
-        single<VenueRepository> {
-            VenueRepositoryImpl(
+        single {
+            UserRepository(
                 api = get(),
                 dao = get(),
                 scheduler = get()
@@ -61,5 +60,5 @@ object DataModule : CoreModule {
     private const val CONNECTION_TIME_OUT = 30
     private const val WRITE_TIME_OUT = 30
     private const val READ_TIME_OUT = 30
-    private const val BASE_URL = "https://api.foursquare.com/v2/"
+    private const val BASE_URL = "https://randomuser.me/"
 }

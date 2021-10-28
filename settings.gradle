@@ -3,8 +3,8 @@
  */
 include ":app"
 
-include ":feature-venue-search"
-include ":feature-venue-detail"
+include ":feature-users"
+//include ":feature-profile"
 
 include ":shared-data"
 include ":shared-resources"

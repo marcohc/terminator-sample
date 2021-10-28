@@ -1,7 +1,6 @@
 package com.marcohc.terminator.sample.di.features
 
-import com.marcohc.terminator.sample.features.detail.DetailModule
-import com.marcohc.terminator.sample.features.search.SearchModule
+import com.marcohc.terminator.sample.feature.users.UsersModule
 import org.koin.core.module.Module
 
 object FeaturesModule {
@@ -9,7 +8,7 @@ object FeaturesModule {
     val modules: List<Module>
         get() = mutableListOf<Module>()
             .apply {
-                add(SearchModule.module)
-                add(DetailModule.module)
+                add(UsersModule.module)
+//                add(DetailModule.module)
             }
 }

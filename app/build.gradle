@@ -1,14 +1,14 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
 
-apply from: '../config/android-application.gradle'
+apply from: "../config/android-application.gradle"
 
 dependencies {
 
     implementation libraries.terminator.koin
     implementation libraries.terminator.mvi
-    implementation project(':feature-venue-detail')
-    implementation project(':feature-venue-search')
-    implementation project(':shared-data')
+//    implementation project(":feature-profile")
+    implementation project(":feature-users")
+    implementation project(":shared-data")
 
 }

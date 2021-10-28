@@ -4,19 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.marcohc.terminator.sample.data.dao.VenueDao
-import com.marcohc.terminator.sample.data.model.Venue
+import com.marcohc.terminator.sample.data.dao.UserDao
+import com.marcohc.terminator.sample.data.model.User
 
 @Database(
     entities = [
-        Venue::class
+        User::class
     ],
     exportSchema = true,
     version = 1
 )
 internal abstract class RoomDatabaseImpl : RoomDatabase() {
 
-    abstract fun venueDao(): VenueDao
+    abstract fun venueDao(): UserDao
 
 }
 

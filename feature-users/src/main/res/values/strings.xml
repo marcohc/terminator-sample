@@ -1,0 +1,6 @@
+<resources>
+    <string name="users_title">Users</string>
+    <string name="search_detail_location_unknown">Location is unknown</string>
+    <string name="users_error">Pull to refresh and try again</string>
+    <string name="widget_general_error">Houston, we have a problem!</string>
+</resources>
