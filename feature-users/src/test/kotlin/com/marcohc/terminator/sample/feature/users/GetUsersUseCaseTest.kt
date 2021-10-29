@@ -16,6 +16,7 @@ internal class GetUsersUseCaseTest {
 
     @Mock
     lateinit var connectionManager: ConnectionManager
+
     @Mock
     private lateinit var userRepository: UserRepository
 
@@ -23,11 +24,8 @@ internal class GetUsersUseCaseTest {
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
-        useCase = GetUsersUseCase(
-            userRepository,
-            Schedulers.trampoline()
-        )
+        MockitoAnnotations.openMocks(this)
+        useCase = GetUsersUseCase(userRepository)
     }
 
     @Test
@@ -61,7 +59,7 @@ internal class GetUsersUseCaseTest {
         val city = "Madrid"
         val items = emptyList<User>()
         whenever(connectionManager.isConnected()).thenReturn(false)
-        whenever(userRepository.getFromLocal(city)).thenReturn(SingleJust(items))
+        whenever(userRepository.getFromLocal()).thenReturn(SingleJust(items))
 
         useCase.execute()
             .test()
