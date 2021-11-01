@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.marcohc.terminator.core.mvi.ui.MviActivity
 import com.marcohc.terminator.core.mvi.ui.MviConfig
 import com.marcohc.terminator.core.mvi.ui.MviConfigType
-import com.marcohc.terminator.core.utils.setGone
-import com.marcohc.terminator.core.utils.setVisible
 import com.marcohc.terminator.core.utils.setVisibleEitherGone
 import com.marcohc.terminator.sample.feature.users.UsersIntention.*
 import com.marcohc.terminator.sample.feature.users.adapter.UserItem
@@ -28,11 +26,11 @@ class UsersActivity : MviActivity<UsersIntention, UsersState>() {
     private lateinit var recyclerAdapter: UsersAdapter
 
     override fun afterComponentCreated(savedInstanceState: Bundle?) {
-        progressBar.indeterminateDrawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(R.color.colorPrimary, BlendModeCompat.SRC_ATOP)
+        usersProgressBar.indeterminateDrawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(R.color.colorPrimary, BlendModeCompat.SRC_ATOP)
 
         recyclerAdapter = UsersAdapter()
         val layoutManager = LinearLayoutManager(this)
-        recyclerView.apply {
+        usersRecyclerView.apply {
             adapter = recyclerAdapter
             this.layoutManager = layoutManager
             addItemDecoration(DividerItemDecoration(context, layoutManager.orientation))
@@ -54,9 +52,9 @@ class UsersActivity : MviActivity<UsersIntention, UsersState>() {
 
     override fun render(state: UsersState) {
         with(state) {
-            progressBar.setVisibleEitherGone(loading)
+            usersProgressBar.setVisibleEitherGone(loading)
             recyclerAdapter.setData(items)
-            errorText.setVisibleEitherGone(error)
+            usersErrorText.setVisibleEitherGone(error)
             showErrorExecutable.execute { Toast.makeText(this@UsersActivity, R.string.widget_general_error, Toast.LENGTH_LONG).show() }
         }
     }
