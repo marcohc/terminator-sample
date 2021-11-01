@@ -12,7 +12,7 @@ ext.versions = [
         kotlin    : "1.5.31",
         retrofit  : "2.6.2",
         room      : "2.3.0",
-        terminator: "2.9.1",
+        terminator: "2.10.0",
 ]
 
 ext.gradlePlugins = [
@@ -24,8 +24,12 @@ ext.gradlePlugins = [
 ]
 
 ext.libraries = [
-        glide              : "com.github.bumptech.glide:glide:$versions.glide",
-        glideCompiler      : "com.github.bumptech.glide:compiler:$versions.glide",
+        androidTestRunner       : "androidx.test:runner:1.2.0",
+        androidJunit            : "androidx.test.ext:junit:1.1.1",
+        androidTestOrchestrator : "androidx.test:orchestrator:1.2.0",
+        espressoBarista         : "com.adevinta.android:barista:4.2.0",
+        glide                   : "com.github.bumptech.glide:glide:$versions.glide",
+        glideCompiler           : "com.github.bumptech.glide:compiler:$versions.glide",
         gson                    : "com.google.code.gson:gson:2.8.5",
         junit                   : "junit:junit:4.13",
         kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin",
@@ -47,11 +51,12 @@ ext.libraries = [
         ],
         swipeRefreshLayout      : "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0",
         terminator              : [
-                koin    : "com.github.marcohc.terminator:core-koin:$versions.terminator",
-                mvi     : "com.github.marcohc.terminator:core-mvi:$versions.terminator",
-                mviTest : "com.github.marcohc.terminator:core-mvi-test:$versions.terminator",
-                recycler: "com.github.marcohc.terminator:core-recycler:$versions.terminator",
-                utils   : "com.github.marcohc.terminator:core-utils:$versions.terminator",
+                koin          : "com.github.marcohc.terminator:core-koin:$versions.terminator",
+                mvi           : "com.github.marcohc.terminator:core-mvi:$versions.terminator",
+                mviAndroidTest: "com.github.marcohc.terminator:core-mvi-android-test:$versions.terminator",
+                mviTest       : "com.github.marcohc.terminator:core-mvi-test:$versions.terminator",
+                recycler      : "com.github.marcohc.terminator:core-recycler:$versions.terminator",
+                utils         : "com.github.marcohc.terminator:core-utils:$versions.terminator",
         ],
         timber                  : "com.jakewharton.timber:timber:4.7.1",
 ]

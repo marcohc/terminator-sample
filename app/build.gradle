@@ -5,9 +5,16 @@ apply from: "../config/android-application.gradle"
 
 dependencies {
 
+
+    androidTestImplementation libraries.espressoBarista
+    androidTestImplementation libraries.terminator.mviAndroidTest
+    androidTestImplementation libraries.terminator.recycler
+
+    androidTestUtil libraries.androidTestOrchestrator
+
     implementation libraries.terminator.koin
     implementation libraries.terminator.mvi
-//    implementation project(":feature-profile")
+
     implementation project(":feature-users")
     implementation project(":shared-data")
 

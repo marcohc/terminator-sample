@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.marcohc.terminator.sample">
+
+    <application
+        android:name="com.marcohc.terminator.sample.TestApplication"
+        tools:replace="android:name">
+        <activity
+            android:name="com.marcohc.terminator.core.mvi.android.test.SingleFragmentActivity"
+            android:theme="@style/Theme.AppCompat" />
+    </application>
+</manifest>

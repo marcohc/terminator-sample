@@ -35,7 +35,13 @@ android {
         versionName "3.0.0"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        testInstrumentationRunner "com.marcohc.terminator.core.mvi.android.test.RxTestRunner"
+    }
+
+    testOptions {
+        animationsDisabled = true
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
 
     // To remove jetbrains annotations dex error
