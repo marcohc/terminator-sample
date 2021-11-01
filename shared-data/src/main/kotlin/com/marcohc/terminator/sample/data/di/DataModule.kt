@@ -5,11 +5,9 @@ import com.marcohc.terminator.core.koin.CoreModule
 import com.marcohc.terminator.sample.data.api.UserApi
 import com.marcohc.terminator.sample.data.db.AppDatabase
 import com.marcohc.terminator.sample.data.db.RoomDatabaseImpl
-import com.marcohc.terminator.sample.data.repositories.ConnectionManager
 import com.marcohc.terminator.sample.data.repositories.UserRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -23,7 +21,6 @@ object DataModule : CoreModule {
         single { get<Retrofit>().create(UserApi::class.java) }
         single { AppDatabase.getAppDatabase(get()) }
         single { get<RoomDatabaseImpl>().venueDao() }
-        single { ConnectionManager(androidApplication(), get()) }
         single {
             UserRepository(
                 api = get(),
