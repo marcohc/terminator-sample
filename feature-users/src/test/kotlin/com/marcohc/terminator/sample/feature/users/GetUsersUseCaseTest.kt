@@ -1,16 +1,17 @@
 package com.marcohc.terminator.sample.feature.users
 
+import com.marcohc.terminator.core.mvi.test.mockError
+import com.marcohc.terminator.core.mvi.test.mockValue
 import com.marcohc.terminator.sample.data.model.User
 import com.marcohc.terminator.sample.data.repositories.UserRepository
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.internal.operators.single.SingleJust
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-// TODO: Implement
 internal class GetUsersUseCaseTest {
 
     @Mock
@@ -25,40 +26,59 @@ internal class GetUsersUseCaseTest {
     }
 
     @Test
-    fun `given connection when use case executes then return items`() {
-        val city = "Madrid"
-        val items = emptyList<User>()
-        whenever(userRepository.getFromNetwork()).thenReturn(SingleJust(items))
+    fun `given error when executed then propagate error`() {
+        val exception = IllegalStateException()
+        userRepository.getFromLocal().mockError(exception)
+
+        useCase.execute()
+            .test()
+            .assertError(exception)
+    }
+
+    @Test
+    fun `given local users when executed then return local`() {
+        val users = listOf<User>(mock())
+        userRepository.getFromLocal().mockValue(users)
 
         useCase.execute()
             .test()
             .assertNoErrors()
             .assertComplete()
-            .assertValue { it == items }
+            .assertValue { it == users }
     }
 
     @Test
-    fun `given connection when use case executes then save items`() {
-        val city = "Madrid"
-        val items = emptyList<User>()
-        whenever(userRepository.getFromNetwork()).thenReturn(SingleJust(items))
-
-        useCase.execute().test()
-
-        verify(userRepository).saveAll(items)
-    }
-
-    @Test
-    fun `given no connection when use case executes then return local items`() {
-        val city = "Madrid"
-        val items = emptyList<User>()
-        whenever(userRepository.getFromLocal()).thenReturn(SingleJust(items))
+    fun `given no local users when executed then fetch from network`() {
+        userRepository.getFromLocal().mockValue(emptyList())
 
         useCase.execute()
             .test()
-            .assertNoErrors()
-            .assertComplete()
-            .assertValue { it == items }
+
+        verify(userRepository).getFromNetwork()
+    }
+
+    @Test
+    fun `given no local users when executed then store to local`() {
+        val users = listOf<User>(mock())
+        userRepository.getFromLocal().mockValue(emptyList())
+        userRepository.getFromNetwork().mockValue(users)
+
+        useCase.execute()
+            .test()
+
+        verify(userRepository).saveAll(users)
+    }
+
+    @Test
+    fun `given no local users when executed then fetch from network and return local`() {
+        val users = listOf<User>(mock())
+        userRepository.getFromLocal().mockValue(emptyList())
+        userRepository.getFromNetwork().mockValue(users)
+
+        useCase.execute()
+            .test()
+
+        verify(userRepository, times(2)).getFromLocal()
     }
 
 }
