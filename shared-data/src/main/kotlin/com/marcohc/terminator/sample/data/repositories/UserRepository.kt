@@ -14,7 +14,7 @@ class UserRepository(
     private val scheduler: Scheduler
 ) {
 
-    fun saveAll(users: List<User>): Completable = Completable.fromAction { dao.saveAll(users.toTypedArray()) }
+    fun saveAll(users: List<User>) = dao.saveAll(users.toTypedArray())
 
     fun getFromNetwork(): Single<List<User>> = api.getUsers()
         .map { UserMapper.mapEntitiesToModels(it.results) }

@@ -12,7 +12,7 @@ import io.reactivex.Single
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveAll(users: Array<User>): List<Long>
+    fun saveAll(users: Array<User>): Completable
 
     @Query("SELECT * FROM users WHERE id = (:id) LIMIT 1")
     fun getById(id: Int = -1): Single<User>

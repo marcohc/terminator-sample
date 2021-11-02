@@ -23,14 +23,13 @@ dependencies {
     implementation libraries.gson
     implementation libraries.okhttp3LogginInterceptor
     implementation libraries.retrofitRxAdapter
-    implementation libraries.room.rxJava2
     implementation libraries.room.runtime
-//    implementation libraries.rxJava.core
+    implementation libraries.room.rxJava2
     implementation libraries.terminator.koin
     implementation(libraries.retrofitGsonAdapter) { exclude group: 'com.google.code.gson' }
 
     kapt libraries.room.compile
 
-    testImplementation libraries.junit
+    testImplementation libraries.terminator.mviTest
 
 }
