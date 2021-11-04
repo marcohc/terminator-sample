@@ -7,22 +7,23 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.marcohc.terminator.core.recycler.Delegate
 import com.marcohc.terminator.core.recycler.DelegateConfig
 import com.marcohc.terminator.sample.feature.users.R
-import kotlinx.android.synthetic.main.user_item.view.*
+import com.marcohc.terminator.sample.feature.users.databinding.UserItemBinding
 
 internal class UserDelegate : Delegate<UserItem.User> {
 
     override val delegateConfig = DelegateConfig.init<UserItem.User>(R.layout.user_item)
 
     override fun bind(view: View, item: UserItem.User, childOnClickListener: View.OnClickListener, childOnLongClickListener: View.OnLongClickListener) {
+       val viewBinding = UserItemBinding.bind(view)
         with(item) {
-            view.fullNameText.text = fullName
-            view.emailText.text = email
+            viewBinding.fullNameText.text = fullName
+            viewBinding.emailText.text = email
 
             Glide.with(view.context)
                 .load(pictureUrl)
                 .transform(*listOf(CenterCrop(), RoundedCorners(16)).toTypedArray())
                 .error(R.drawable.ic_empty_placeholder)
-                .into(view.userImage)
+                .into(viewBinding.userImage)
         }
     }
 }

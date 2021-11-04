@@ -10,10 +10,11 @@ import com.marcohc.terminator.core.mvi.ui.MviActivity
 import com.marcohc.terminator.core.mvi.ui.MviConfig
 import com.marcohc.terminator.core.mvi.ui.MviConfigType
 import com.marcohc.terminator.core.utils.setVisibleEitherGone
+import com.marcohc.terminator.core.utils.unsafeLazy
 import com.marcohc.terminator.sample.feature.users.UsersIntention.*
 import com.marcohc.terminator.sample.feature.users.adapter.UserItem
 import com.marcohc.terminator.sample.feature.users.adapter.UsersAdapter
-import kotlinx.android.synthetic.main.users_activity.*
+import com.marcohc.terminator.sample.feature.users.databinding.UsersActivityBinding
 
 class UsersActivity : MviActivity<UsersIntention, UsersState>() {
 
@@ -24,13 +25,14 @@ class UsersActivity : MviActivity<UsersIntention, UsersState>() {
     )
 
     private lateinit var recyclerAdapter: UsersAdapter
+    private val viewBinding: UsersActivityBinding by unsafeLazy { UsersActivityBinding.bind(inflatedView) }
 
     override fun afterComponentCreated(savedInstanceState: Bundle?) {
-        usersProgressBar.indeterminateDrawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(R.color.colorPrimary, BlendModeCompat.SRC_ATOP)
+        viewBinding.usersProgressBar.indeterminateDrawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(R.color.colorPrimary, BlendModeCompat.SRC_ATOP)
 
         recyclerAdapter = UsersAdapter()
         val layoutManager = LinearLayoutManager(this)
-        usersRecyclerView.apply {
+        viewBinding.usersRecyclerView.apply {
             adapter = recyclerAdapter
             this.layoutManager = layoutManager
             addItemDecoration(DividerItemDecoration(context, layoutManager.orientation))
@@ -42,9 +44,9 @@ class UsersActivity : MviActivity<UsersIntention, UsersState>() {
             }
         }
 
-        swipeRefreshLayout.setOnRefreshListener {
+        viewBinding.swipeRefreshLayout.setOnRefreshListener {
             sendIntention(PullToRefresh)
-            swipeRefreshLayout.isRefreshing = false
+            viewBinding.swipeRefreshLayout.isRefreshing = false
         }
 
         sendIntention(Initial)
@@ -52,9 +54,9 @@ class UsersActivity : MviActivity<UsersIntention, UsersState>() {
 
     override fun render(state: UsersState) {
         with(state) {
-            usersProgressBar.setVisibleEitherGone(loading)
+            viewBinding.usersProgressBar.setVisibleEitherGone(loading)
             recyclerAdapter.setData(items)
-            usersErrorText.setVisibleEitherGone(error)
+            viewBinding.usersErrorText.setVisibleEitherGone(error)
             showErrorExecutable.execute { Toast.makeText(this@UsersActivity, R.string.widget_general_error, Toast.LENGTH_LONG).show() }
         }
     }
