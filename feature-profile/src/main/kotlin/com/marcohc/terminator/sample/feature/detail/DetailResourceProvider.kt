@@ -7,5 +7,4 @@ internal class DetailResourceProvider(
 ) {
 
     fun getErrorMessage(): String = context.getString(R.string.detail_error)
-
 }

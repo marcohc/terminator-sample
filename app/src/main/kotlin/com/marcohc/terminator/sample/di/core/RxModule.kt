@@ -13,5 +13,4 @@ object RxModule : CoreModule {
         single { Schedulers.io() }
         single(named(MVI_RX_UI_SCHEDULER)) { AndroidSchedulers.mainThread() }
     }
-
 }

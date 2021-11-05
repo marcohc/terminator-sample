@@ -5,5 +5,4 @@ import android.app.Activity
 interface UsersNavigator {
 
     fun goToProfile(activity: Activity, requestCode: Int, id: Int)
-
 }

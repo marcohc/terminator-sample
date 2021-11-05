@@ -36,9 +36,15 @@ class DetailActivity : MviActivity<DetailIntention, DetailState>() {
         details_toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
-        detail_progress_bar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN)
+        detail_progress_bar.indeterminateDrawable.setColorFilter(
+            ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN
+        )
 
-        sendIntention(DetailIntention.Initial(checkNotNull(intent.getStringExtra(EXTRA_VENUE_ID)) { "You must pass a venueId to this screen" }))
+        sendIntention(
+            DetailIntention.Initial(
+                checkNotNull(intent.getStringExtra(EXTRA_VENUE_ID)) { "You must pass a venueId to this screen" }
+            )
+        )
     }
 
     override fun render(state: DetailState) {
@@ -53,10 +59,26 @@ class DetailActivity : MviActivity<DetailIntention, DetailState>() {
                 state.user.run {
                     detail_title_text.text = name
                     // This view logic could be moved and tested into the Interactor to keep View as stupid as possible
-                    detail_description_text.text = if (description.isEmpty()) getString(R.string.detail_description_unknown) else description
-                    detail_location_text.text = if (location.isEmpty()) getString(R.string.detail_location_unknown) else location
-                    detail_rating_text.text = if (rating == 0.0) getString(R.string.detail_rating_unknown) else getString(R.string.detail_rating, rating.roundToInt())
-                    detail_contact_text.text = if (phone.isEmpty()) getString(R.string.detail_phone_unknown) else phone
+                    detail_description_text.text = if (description.isEmpty()) {
+                        getString(R.string.detail_description_unknown)
+                    } else {
+                        description
+                    }
+                    detail_location_text.text = if (location.isEmpty()) {
+                        getString(R.string.detail_location_unknown)
+                    } else {
+                        location
+                    }
+                    detail_rating_text.text = if (rating == 0.0) {
+                        getString(R.string.detail_rating_unknown)
+                    } else {
+                        getString(R.string.detail_rating, rating.roundToInt())
+                    }
+                    detail_contact_text.text = if (phone.isEmpty()) {
+                        getString(R.string.detail_phone_unknown)
+                    } else {
+                        phone
+                    }
 
                     val requestOptions = RequestOptions()
                         .error(android.R.drawable.ic_menu_report_image)
@@ -85,5 +107,4 @@ class DetailActivity : MviActivity<DetailIntention, DetailState>() {
             return intent
         }
     }
-
 }

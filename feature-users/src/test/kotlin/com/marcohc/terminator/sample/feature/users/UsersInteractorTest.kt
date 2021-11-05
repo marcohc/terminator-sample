@@ -1,3 +1,5 @@
+@file:Suppress("NoWildcardImports")
+
 package com.marcohc.terminator.sample.feature.users
 
 import com.marcohc.terminator.core.mvi.domain.MviBaseInteractor
@@ -112,5 +114,4 @@ internal class UsersInteractorTest : MviInteractorTest<UsersIntention, UsersActi
 
         verify(router).goToProfile(item)
     }
-
 }

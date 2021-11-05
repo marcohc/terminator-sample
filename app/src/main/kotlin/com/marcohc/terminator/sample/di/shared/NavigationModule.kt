@@ -5,7 +5,7 @@ import com.marcohc.terminator.sample.feature.users.UsersNavigator
 import com.marcohc.terminator.sample.navigation.ApplicationNavigator
 import org.koin.dsl.module
 
-object NavigationModule:CoreModule {
+object NavigationModule : CoreModule {
 
     override val module = module {
         factory { ApplicationNavigator() }

@@ -5,6 +5,4 @@ object CoreModules {
     val modules = listOf(
         RxModule.module
     )
-
 }
-

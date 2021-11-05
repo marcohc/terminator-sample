@@ -75,5 +75,4 @@ internal class DetailIntegrationTest : MviInteractorTest<DetailIntention, Detail
 
         DetailState.Data(venue).assertStateAt(1)
     }
-
 }

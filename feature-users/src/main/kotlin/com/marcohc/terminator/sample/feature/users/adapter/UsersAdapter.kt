@@ -10,4 +10,3 @@ internal class UsersAdapter : BaseAdapter<UserItem>() {
         UserDelegate()
     ) as List<Delegate<UserItem>>
 }
-

@@ -15,5 +15,4 @@ internal class UsersAnalytics {
     fun trackItemClick() = Completable.fromAction {
         // Track your analytics events here
     }
-
 }

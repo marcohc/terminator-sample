@@ -13,17 +13,26 @@ internal class UserDelegate : Delegate<UserItem.User> {
 
     override val delegateConfig = DelegateConfig.init<UserItem.User>(R.layout.user_item)
 
-    override fun bind(view: View, item: UserItem.User, childOnClickListener: View.OnClickListener, childOnLongClickListener: View.OnLongClickListener) {
-       val viewBinding = UserItemBinding.bind(view)
+    override fun bind(
+        view: View,
+        item: UserItem.User,
+        childOnClickListener: View.OnClickListener,
+        childOnLongClickListener: View.OnLongClickListener
+    ) {
+        val viewBinding = UserItemBinding.bind(view)
         with(item) {
             viewBinding.fullNameText.text = fullName
             viewBinding.emailText.text = email
 
             Glide.with(view.context)
                 .load(pictureUrl)
-                .transform(*listOf(CenterCrop(), RoundedCorners(16)).toTypedArray())
+                .transform(CenterCrop(), RoundedCorners(ROUNDED_CORNERS_SIZE))
                 .error(R.drawable.ic_empty_placeholder)
                 .into(viewBinding.userImage)
         }
+    }
+
+    private companion object {
+        const val ROUNDED_CORNERS_SIZE = 16
     }
 }

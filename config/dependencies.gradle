@@ -5,7 +5,7 @@ ext.versions = [
                 targetSdk : 30,
                 buildTools: "30.0.2"
         ],
-        detekt    : "1.1.1",
+        detekt    : "1.19.0-RC1",
         espresso  : "3.2.0",
         glide     : "4.9.0",
         koin      : "2.1.6",

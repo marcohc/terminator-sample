@@ -3,7 +3,6 @@ package com.marcohc.terminator.sample.feature.users
 import com.marcohc.terminator.core.mvi.domain.MviBaseInteractor
 import com.marcohc.terminator.core.mvi.ui.consumable.OneTimeExecutable
 import com.marcohc.terminator.sample.data.model.User
-import com.marcohc.terminator.sample.feature.users.UsersIntention.*
 import com.marcohc.terminator.sample.feature.users.adapter.UserItem
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -16,11 +15,12 @@ internal class UsersInteractor(
 ) : MviBaseInteractor<UsersIntention, UsersAction, UsersState>(defaultState = UsersState()) {
 
     override fun intentionToAction(): (UsersIntention) -> Observable<out UsersAction> = { intention ->
-        when (intention) {
-            is Initial -> initial()
-            is PullToRefresh -> pullToRefresh()
-            is ItemClick -> itemClick(intention.item).toObservable()
+        val observable: Observable<out UsersAction> = when (intention) {
+            is UsersIntention.Initial -> initial()
+            is UsersIntention.PullToRefresh -> pullToRefresh()
+            is UsersIntention.ItemClick -> itemClick(intention.item).toObservable()
         }
+        observable
     }
 
     private fun initial() = analytics.trackScreen()
@@ -46,7 +46,7 @@ internal class UsersInteractor(
         }
     }
 
-    private fun Completable.loadAndRenderUsers(): Observable<UsersAction> = andThen(getUsersUseCase.execute().toObservable())
+    private fun Completable.loadAndRenderUsers() = andThen(getUsersUseCase.execute().toObservable())
         .map<UsersAction> { UsersAction.Render(mapModelsToItems(it)) }
         .startWith(UsersAction.Loading)
         .onErrorReturn { UsersAction.Error }
@@ -70,4 +70,3 @@ internal class UsersInteractor(
         }
     }
 }
-

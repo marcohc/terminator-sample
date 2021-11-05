@@ -6,9 +6,9 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 internal class DetailInteractor(
-        private val getVenueByIdUseCase: GetVenueByIdUseCase,
-        private val analytics: DetailAnalytics,
-        private val resourceProvider: DetailResourceProvider
+    private val getVenueByIdUseCase: GetVenueByIdUseCase,
+    private val analytics: DetailAnalytics,
+    private val resourceProvider: DetailResourceProvider
 ) : MviBaseInteractor<DetailIntention, DetailAction, DetailState>(defaultState = DetailState.Loading) {
 
     private lateinit var venueId: String
@@ -49,5 +49,4 @@ internal class DetailInteractor(
             }
         } ?: throw IllegalStateException("From $state you cannot execute $action")
     }
-
 }

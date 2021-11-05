@@ -20,4 +20,3 @@ object ApplicationModule {
                 addAll(FeaturesModule.modules)
             }
 }
-

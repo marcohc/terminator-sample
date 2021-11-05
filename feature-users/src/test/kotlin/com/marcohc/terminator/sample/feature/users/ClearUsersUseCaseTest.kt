@@ -40,6 +40,4 @@ internal class ClearUsersUseCaseTest {
             .assertNoErrors()
             .assertComplete()
     }
-
-
 }

@@ -17,29 +17,26 @@ import com.marcohc.terminator.sample.data.model.User
 internal abstract class RoomDatabaseImpl : RoomDatabase() {
 
     abstract fun venueDao(): UserDao
-
 }
 
-internal class AppDatabase {
+internal object AppDatabase {
 
-    companion object {
+    private const val DATABASE_NAME = "random_users.db"
+    private var INSTANCE: RoomDatabaseImpl? = null
 
-        private const val DATABASE_NAME = "foursquare.db"
-        private var INSTANCE: RoomDatabaseImpl? = null
-        @JvmField
-        var DATABASE_PATH = ""
+    @JvmField
+    var DATABASE_PATH = ""
 
-        fun getAppDatabase(context: Context): RoomDatabaseImpl {
-            if (INSTANCE == null) {
-                INSTANCE = Room
-                    .databaseBuilder(
-                        context.applicationContext, RoomDatabaseImpl::class.java,
-                        DATABASE_NAME
-                    )
-                    .build()
-                DATABASE_PATH = context.getDatabasePath(DATABASE_NAME).absolutePath
-            }
-            return INSTANCE as RoomDatabaseImpl
+    fun getAppDatabase(context: Context): RoomDatabaseImpl {
+        if (INSTANCE == null) {
+            INSTANCE = Room
+                .databaseBuilder(
+                    context.applicationContext, RoomDatabaseImpl::class.java,
+                    DATABASE_NAME
+                )
+                .build()
+            DATABASE_PATH = context.getDatabasePath(DATABASE_NAME).absolutePath
         }
+        return INSTANCE as RoomDatabaseImpl
     }
 }

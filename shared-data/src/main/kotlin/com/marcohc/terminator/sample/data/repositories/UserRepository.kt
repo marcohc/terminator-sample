@@ -28,5 +28,4 @@ class UserRepository(
 
     fun removeAllFromLocal(): Completable = dao.removeAll()
         .subscribeOn(scheduler)
-
 }

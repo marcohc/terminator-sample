@@ -8,6 +8,4 @@ object SharedModules {
         DataModule.module,
         NavigationModule.module
     )
-
 }
-

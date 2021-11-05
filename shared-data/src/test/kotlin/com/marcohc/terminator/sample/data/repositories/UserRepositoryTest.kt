@@ -117,7 +117,6 @@ class UserRepositoryTest {
 
     @Test
     fun `given no error when removeAllFromLocal then complete`() {
-        val users = listOf<User>(mock())
         dao.removeAll().mockComplete()
 
         repository.removeAllFromLocal()
@@ -125,5 +124,4 @@ class UserRepositoryTest {
             .assertNoErrors()
             .assertComplete()
     }
-
 }

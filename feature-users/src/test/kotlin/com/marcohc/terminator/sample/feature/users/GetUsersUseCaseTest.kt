@@ -80,5 +80,4 @@ internal class GetUsersUseCaseTest {
 
         verify(userRepository, times(2)).getFromLocal()
     }
-
 }

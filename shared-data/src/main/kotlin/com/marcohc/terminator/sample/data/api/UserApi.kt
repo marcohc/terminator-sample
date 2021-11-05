@@ -8,7 +8,6 @@ interface UserApi {
 
     @GET("api/")
     fun getUsers(@Query("results") results: Int? = 50): Single<GetUsersResponse>
-
 }
 
 data class GetUsersResponse(
@@ -32,4 +31,3 @@ data class PictureResponse(
     val medium: String,
     val thumbnail: String,
 )
-

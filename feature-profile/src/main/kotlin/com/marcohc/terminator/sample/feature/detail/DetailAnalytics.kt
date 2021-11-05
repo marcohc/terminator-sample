@@ -9,5 +9,4 @@ internal class DetailAnalytics {
     fun logPullToRefresh() {
         // Log event here
     }
-
 }

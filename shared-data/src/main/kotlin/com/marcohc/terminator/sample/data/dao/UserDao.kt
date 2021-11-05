@@ -22,5 +22,4 @@ interface UserDao {
 
     @Query("DELETE FROM users")
     fun removeAll(): Completable
-
 }

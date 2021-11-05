@@ -19,5 +19,4 @@ class TestApplication : Application() {
             androidContext(this@TestApplication)
         }
     }
-
 }

@@ -8,10 +8,11 @@ internal class UsersRouter(
     private val applicationNavigator: UsersNavigator
 ) {
 
-    fun goToProfile(item: UserItem.User) = navigationExecutor.executeCompletable { applicationNavigator.goToProfile(it, REQUEST_CODE_DETAILS, item.id) }
+    fun goToProfile(item: UserItem.User) = navigationExecutor.executeCompletable {
+        applicationNavigator.goToProfile(it, REQUEST_CODE_DETAILS, item.id)
+    }
 
     companion object {
         private const val REQUEST_CODE_DETAILS = 1234
     }
-
 }

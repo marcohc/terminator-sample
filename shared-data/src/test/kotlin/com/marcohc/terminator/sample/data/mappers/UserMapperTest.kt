@@ -1,8 +1,9 @@
+@file:Suppress("Indentation")
+
 package com.marcohc.terminator.sample.data.mappers
 
 import com.marcohc.terminator.sample.data.UserEntityExt.mockUserEntity
-import com.marcohc.terminator.sample.data.api.*
-import junit.framework.Assert.assertTrue
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class UserMapperTest {
@@ -21,6 +22,4 @@ class UserMapperTest {
                     expected[0].pictureUrl == userEntity.picture.medium
         )
     }
-
-
 }

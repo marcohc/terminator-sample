@@ -27,5 +27,4 @@ object UsersModule : FeatureModule {
             )
         }
     }
-
 }
