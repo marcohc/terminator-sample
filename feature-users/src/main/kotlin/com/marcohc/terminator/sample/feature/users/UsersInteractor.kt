@@ -15,12 +15,11 @@ internal class UsersInteractor(
 ) : MviBaseInteractor<UsersIntention, UsersAction, UsersState>(defaultState = UsersState()) {
 
     override fun intentionToAction(): (UsersIntention) -> Observable<out UsersAction> = { intention ->
-        val observable: Observable<out UsersAction> = when (intention) {
+        when (intention) {
             is UsersIntention.Initial -> initial()
             is UsersIntention.PullToRefresh -> pullToRefresh()
             is UsersIntention.ItemClick -> itemClick(intention.item).toObservable()
         }
-        observable
     }
 
     private fun initial() = analytics.trackScreen()

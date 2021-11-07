@@ -21,6 +21,16 @@ android {
         }
     }
 
+    flavorDimensions "default"
+    productFlavors {
+        // Used to run UI tests mocking the domain part
+        mock {
+        }
+        // Normal flavor
+        normal {
+        }
+    }
+
     compileOptions {
         encoding "UTF-8"
         sourceCompatibility JavaVersion.VERSION_1_8
