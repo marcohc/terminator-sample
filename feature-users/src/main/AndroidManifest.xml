@@ -4,6 +4,7 @@
     <application>
         <activity
             android:name="com.marcohc.terminator.sample.feature.users.UsersActivity"
+            android:exported="true"
             android:screenOrientation="sensor"
             android:theme="@style/AppTheme">
             <intent-filter>
